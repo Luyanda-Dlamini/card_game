@@ -1,15 +1,14 @@
 Package.describe({
-  name: 'pakastin:deck-of-cards',
+  name: 'luyanda:deck-of-cards',
   version: '0.1.4',
   // Brief, one-line summary of the package.
   summary: 'HTML5 Deck of Cards',
-  // URL to the Git repository containing the source code for this package.
-  git: 'https://github.com/pakastin/deck-of-cards.git',
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.
-  documentation: 'README.md'
+  documentation: null
 });
 
+//Apis for card game
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use('ecmascript');
@@ -40,5 +39,5 @@ Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
 
-  api.use('pakastin:deck-of-cards');
+  api.use('luyanda:deck-of-cards');
 });

@@ -18,18 +18,11 @@ var $poker = document.createElement('button')
 var $flip = document.createElement('button')
 
 $shuffle.textContent = 'Shuffle'
-$sort.textContent = 'Sort'
-$bysuit.textContent = 'By suit'
-$fan.textContent = 'Fan'
-$poker.textContent = 'Poker'
 $flip.textContent = 'Flip'
 
 $topbar.appendChild($flip)
 $topbar.appendChild($shuffle)
-$topbar.appendChild($bysuit)
-$topbar.appendChild($fan)
-$topbar.appendChild($poker)
-$topbar.appendChild($sort)
+
 
 var deck = Deck()
 
@@ -151,16 +144,7 @@ $shuffle.addEventListener('click', function () {
   deck.shuffle()
   deck.shuffle()
 })
-$sort.addEventListener('click', function () {
-  deck.sort()
-})
-$bysuit.addEventListener('click', function () {
-  deck.sort(true) // sort reversed
-  deck.bysuit()
-})
-$fan.addEventListener('click', function () {
-  deck.fan()
-})
+
 $flip.addEventListener('click', function () {
   deck.flip()
 })
@@ -175,58 +159,9 @@ $poker.addEventListener('click', function () {
   })
   deck.shuffle()
   deck.shuffle()
-  deck.poker()
 })
 
 deck.mount($container)
 
 deck.intro()
 deck.sort()
-
-// secret message..
-
-var randomDelay = 10000 + 30000 * Math.random()
-
-setTimeout(function () {
-  printMessage('Psst..I want to share a secret with you...')
-}, randomDelay)
-
-setTimeout(function () {
-  printMessage('...try clicking all kings and nothing in between...')
-}, randomDelay + 5000)
-
-setTimeout(function () {
-  printMessage('...have fun ;)')
-}, randomDelay + 10000)
-
-function printMessage (text) {
-  var animationFrames = Deck.animationFrames
-  var ease = Deck.ease
-  var $message = document.createElement('p')
-  $message.classList.add('message')
-  $message.textContent = text
-
-  document.body.appendChild($message)
-
-  $message.style[transform] = translate(window.innerWidth + 'px', 0)
-
-  var diffX = window.innerWidth
-
-  animationFrames(1000, 700)
-    .progress(function (t) {
-      t = ease.cubicInOut(t)
-      $message.style[transform] = translate((diffX - diffX * t) + 'px', 0)
-    })
-
-  animationFrames(6000, 700)
-    .start(function () {
-      diffX = window.innerWidth
-    })
-    .progress(function (t) {
-      t = ease.cubicInOut(t)
-      $message.style[transform] = translate((-diffX * t) + 'px', 0)
-    })
-    .end(function () {
-      document.body.removeChild($message)
-    })
-}
